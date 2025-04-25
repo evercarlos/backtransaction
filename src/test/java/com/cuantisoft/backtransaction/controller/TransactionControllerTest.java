@@ -39,7 +39,7 @@ public class TransactionControllerTest extends AbstractContextTest {
     private TransactionRepository transactionRepository;
 
     // Define beans que se usarán en la prueba.
-    // Carga el conexto de TestConfig no el contexto completo
+    // Carga el contexto de TestConfig no el contexto completo
     public static class TestConfig {
 
         @Bean
@@ -55,12 +55,12 @@ public class TransactionControllerTest extends AbstractContextTest {
 
     @Test
     void shouldCreateTransactionSuccessfully() throws Exception {
-
+        // arrange
         TransactionRequestWebDto requestInput = convertTo("/transaction/1-request.json", TransactionRequestWebDto.class);
         Transaction response = convertTo("/transaction/1-response.json", Transaction.class);
-
         Mockito.when(transactionRepository.save(ArgumentMatchers.any())).thenReturn(response);
 
+        // Act & Assert
         mockMvc.perform(post(BASE_PATH)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(convertToJSONString(requestInput))
