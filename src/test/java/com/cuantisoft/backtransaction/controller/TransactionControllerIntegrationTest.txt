@@ -1,0 +1,66 @@
+package com.cuantisoft.backtransaction.controller;
+
+
+import com.cuantisoft.backtransaction.model.dto.TransactionRequestWebDto;
+import com.cuantisoft.backtransaction.model.dto.TransactionResponseWebDto;
+import com.cuantisoft.backtransaction.model.enums.TransferType;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import java.math.BigDecimal;
+
+import org.springframework.boot.test.web.client.TestRestTemplate;
+
+// Carga todo el contexto. con razon no se usa TestConfig
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
+public class TransactionControllerIntegrationTest {
+
+    @Autowired
+    private TestRestTemplate restTemplate;
+
+    @Test
+    void shouldGetTransactionByIdSuccessfully() {
+        // ID de una transacción que ya debe existir
+        Integer existingTransactionId = 1;
+
+        ResponseEntity<TransactionResponseWebDto> response = restTemplate.getForEntity(
+                "/api/v1/transaction/" + existingTransactionId,
+                TransactionResponseWebDto.class
+        );
+
+        Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
+        Assertions.assertNotNull(response.getBody());
+        Assertions.assertEquals(existingTransactionId, response.getBody().id());
+    }
+
+    /*@Test
+    void shouldCreateAndGetTransactionSuccessfully() {
+        // Create a transaction
+        TransactionRequestWebDto request = new TransactionRequestWebDto(
+                1,
+                "debit-abc",
+                "credit-xyz",
+                TransferType.CREDIT_CARD,
+                new BigDecimal("150.00")
+        );
+
+        ResponseEntity<TransactionResponseWebDto> response = restTemplate.postForEntity(
+                "/api/v1/transaction",
+                request,
+                TransactionResponseWebDto.class
+        );
+
+        // Verificar la respuesta
+        Assertions.assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        Assertions.assertNotNull(response.getBody());
+        Assertions.assertNotNull(response.getBody().id());
+        Assertions.assertEquals(new BigDecimal("150.00"), response.getBody().amount());
+    }*/
+
+}

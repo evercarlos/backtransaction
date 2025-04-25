@@ -1,0 +1,7 @@
+{
+  "id": 0,
+  "accountExternalIdDebit": 1,
+  "accountExternalIdCredit": 2,
+  "transferType": "CREDIT_CARD",
+  "amount": "30.00"
+}
