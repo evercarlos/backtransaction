@@ -21,10 +21,11 @@ import org.mockito.Mock;
 import java.math.BigDecimal;
 import java.util.Optional;
 
-// ermite a Mockito trabajar de manera integrada con JUnit 5
+// Permite a Mockito trabajar de manera integrada con JUnit 5
 @ExtendWith(MockitoExtension.class)
 public class TransactionServiceTest {
 
+    // Esta anotación se utiliza para simular dependencias en pruebas unitarias, no en pruebas de integración
     @Mock
     private TransactionRepository transactionRepository;
 
