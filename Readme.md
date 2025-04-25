@@ -1,5 +1,13 @@
 ## Crud para gestionar transacciones bancarias entre cuentas.
 - java: 17
+## NOTAS GENERALES
+- Creación de crud para transacciones
+- Generacion de test unitarios 
+- Generacion de pruebas de integración con ``WebMvcTest``
+
+## INSTALACIÓN
+- Instalar java 17 y maven
+- Ejecutar: nvm clean install
 
 ## NOTA DE TEST
 ### mock
