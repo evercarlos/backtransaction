@@ -2,8 +2,8 @@ package com.cuantisoft.backtransaction.model.dto;
 
 import com.cuantisoft.backtransaction.model.enums.TransferType;
 
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 public record TransactionRequestWebDto(
